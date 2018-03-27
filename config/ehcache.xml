@@ -1,0 +1,15 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="../config/ehcache.xsd">
+	<diskStore path="d:/storeobject" />
+	<defaultCache maxElementsInMemory="10000" eternal="false"
+		timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="true"
+		maxElementsOnDisk="10000000" diskPersistent="false"
+		diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" />
+</ehcache>
+<!-- <diskStore path="java.io.tmpdir" /> -->
+<!-- <defaultCache maxElementsInMemory="10000" 设置了缓存的上限,最多存储多少个记录对象 10000个 
+	eternal="false" 是否永久保存，如果设置为true timeToIdleSeconds="120" 空闲时间为120秒，过后对象清除 
+	timeToLiveSeconds="120" 最大的存活时间为120秒 overflowToDisk="true" 如果内存缓存的对象超过10000，写硬盘上写 
+	maxElementsOnDisk="10000000" 硬盘上保存缓存对象数量 diskPersistent="false" 硬盘保存的数据是否持久化 
+	diskExpiryThreadIntervalSeconds="120" memoryStoreEvictionPolicy="LRU" /> 
+	存储的算法 LRU --> 
