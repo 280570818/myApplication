@@ -2,7 +2,7 @@ package swing.sys.model;
 
 import java.io.Serializable;
 
-public class Student implements Serializable {
+public class User implements Serializable {
 	private Long id;
 	private Integer age;
 	private Long cid;

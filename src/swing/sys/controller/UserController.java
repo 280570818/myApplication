@@ -5,18 +5,18 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import swing.sys.model.Student;
-import swing.sys.service.StudentService;
+import swing.sys.model.User;
+import swing.sys.service.UserService;
 
 @Controller
 @Scope(value="prototype")
-public class StudentController {
+public class UserController {
 	@Autowired
-	private StudentService studentService;
+	private UserService userService;
 	
 	@RequestMapping(value="/save.html")
-	public String save (Student student){
-		studentService.save(student);
+	public String save (User student){
+		userService.save(student);
 		return "success";
 	}
 	

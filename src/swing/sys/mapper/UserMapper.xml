@@ -2,10 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="swing.sys.mapper.StudentMapper">
-	<insert id="save" parameterType="swing.sys.model.Student"
+<mapper namespace="swing.sys.mapper.UserMapper">
+	<insert id="save" parameterType="swing.sys.model.User"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into tb_student
-		(name,age,cid) values(#{name},#{age},#{cid})
+		insert into tb_user (name,age,cid) values (#{name},#{age},#{cid})
 	</insert>
 </mapper>
