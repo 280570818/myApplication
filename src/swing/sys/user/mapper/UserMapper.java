@@ -1,6 +1,6 @@
-package swing.sys.mapper;
+package swing.sys.user.mapper;
 
-import swing.sys.model.User;
+import swing.sys.user.model.User;
 
 public interface UserMapper {
 

@@ -1,4 +1,4 @@
-package swing.sys.model;
+package swing.sys.user.model;
 
 import java.io.Serializable;
 

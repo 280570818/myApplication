@@ -1,10 +1,11 @@
-package swing.sys.service;
+package swing.sys.user.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import swing.sys.mapper.UserMapper;
-import swing.sys.model.User;
+import swing.sys.user.mapper.UserMapper;
+import swing.sys.user.model.User;
+
 
 @Service
 public class UserService {

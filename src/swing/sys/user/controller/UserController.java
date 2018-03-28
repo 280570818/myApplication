@@ -1,12 +1,13 @@
-package swing.sys.controller;
+package swing.sys.user.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import swing.sys.model.User;
-import swing.sys.service.UserService;
+import swing.sys.user.model.User;
+import swing.sys.user.service.UserService;
+
 
 @Controller
 @Scope(value="prototype")
