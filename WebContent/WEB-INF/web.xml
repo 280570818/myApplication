@@ -3,7 +3,6 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
-	<!-- 全局参数 -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring.xml</param-value>
@@ -12,15 +11,12 @@
 		<param-name>resourcePath</param-name>
 		<param-value>resource.properties</param-value>
 	</context-param>
-	<!-- 监听器 -->
 	<listener>
 		<listener-class>swing.sys.listener.ResourceListener</listener-class>
 	</listener>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
-	
-	<!-- 过滤器 -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -29,8 +25,10 @@
 			<param-value>utf-8</param-value>
 		</init-param>
 	</filter>
-	
-	<!-- servlet -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>swing.sys.filter.LoginFilter</filter-class>
+	</filter>
 	<servlet>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
@@ -40,20 +38,18 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
-	<!-- 过滤器映射 -->
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
-	
-	<!-- servlet映射 -->
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
 	<servlet-mapping>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<url-pattern>*.html</url-pattern>
 	</servlet-mapping>
-	
-	<!-- 首页 -->
 	<welcome-file-list>
 		<welcome-file>hello.jsp</welcome-file>
 	</welcome-file-list>

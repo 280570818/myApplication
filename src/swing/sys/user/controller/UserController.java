@@ -16,8 +16,8 @@ public class UserController {
 	private UserService userService;
 	
 	@RequestMapping(value="/save.html")
-	public String save (User student){
-		userService.save(student);
+	public String save (User user){
+		userService.save(user);
 		return "success";
 	}
 	

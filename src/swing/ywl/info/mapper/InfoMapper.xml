@@ -3,8 +3,79 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="swing.ywl.info.mapper.InfoMapper">
-	<!-- <insert id="save" parameterType="swing.sys.user.model.User"
+	<select id="getInfoById" parameterType="long" resultType="swing.ywl.info.model.Info">
+		select * from info where id=#{id}
+	</select>
+	<delete id="deleteInfoById" parameterType="long">
+		delete from info where id=#{id}
+	</delete>
+	<update id="updateInfoById" parameterType="swing.ywl.info.model.Info">
+		update info 
+			<set>
+				<if test="fieldStr1 != null">field_string1=fieldStr1,</if>
+				<if test="fieldStr2 != null">field_string2=fieldStr2,</if>
+				<if test="fieldStr3 != null">field_string3=fieldStr3,</if>
+				<if test="fieldStr4 != null">field_string4=fieldStr4,</if>
+				<if test="fieldStr5 != null">field_string5=fieldStr5,</if>
+				<if test="fieldStr6 != null">field_string6=fieldStr6,</if>
+				<if test="fieldStr7 != null">field_string7=fieldStr7,</if>
+				<if test="fieldStr8 != null">field_string8=fieldStr8,</if>
+				<if test="fieldStr9 != null">field_string9=fieldStr9,</if>
+				<if test="fieldStr10 != null">field_string10=fieldStr10,</if>
+				<if test="fieldStr11 != null">field_string11=fieldStr11,</if>
+				<if test="fieldStr12 != null">field_string12=fieldStr12,</if>
+				<if test="fieldStr13 != null">field_string13=fieldStr13,</if>
+				<if test="fieldStr14 != null">field_string14=fieldStr14,</if>
+				<if test="fieldStr15 != null">field_string15=fieldStr15,</if>
+				<if test="fieldStr16 != null">field_string16=fieldStr16,</if>
+				<if test="fieldStr17 != null">field_string17=fieldStr17,</if>
+				<if test="fieldStr18 != null">field_string18=fieldStr18,</if>
+				<if test="fieldStr19 != null">field_string19=fieldStr19,</if>
+				<if test="fieldStr20 != null">field_string20=fieldStr20,</if>
+				<if test="fieldStr21 != null">field_string21=fieldStr21,</if>
+				<if test="fieldStr22 != null">field_string22=fieldStr22,</if>
+				<if test="fieldInt1 != null">field_int1=fieldInt1,</if>
+				<if test="fieldInt2 != null">field_int2=fieldInt2,</if>
+				<if test="fieldInt3 != null">field_int3=fieldInt3,</if>
+				<if test="fieldInt4 != null">field_int4=fieldInt4,</if>
+				<if test="fieldInt5 != null">field_int5=fieldInt5,</if>
+				<if test="fieldInt6 != null">field_int6=fieldInt6,</if>
+				<if test="fieldInt7 != null">field_int7=fieldInt7,</if>
+				<if test="fieldInt8 != null">field_int8=fieldInt8,</if>
+				<if test="fieldInt9 != null">field_int9=fieldInt9,</if>
+				<if test="fieldDate1 != null">field_date1=fieldDate1,</if>
+				<if test="fieldDate2 != null">field_date2=fieldDate2,</if>
+				<if test="fieldDate3 != null">field_date3=fieldDate3,</if>
+				<if test="fieldDate4 != null">field_date4=fieldDate4,</if>
+				<if test="fieldDate5 != null">field_date5=fieldDate5,</if>
+				<if test="fieldDate6 != null">field_date6=fieldDate6,</if>
+				<if test="fieldDate7 != null">field_date7=fieldDate7,</if>
+				<if test="fieldDate8 != null">field_date8=fieldDate8,</if>
+				<if test="fieldDate9 != null">field_date9=fieldDate9,</if>
+				<if test="fieldDate10 != null">field_date10=fieldDate10,</if>
+			</set>
+		where
+			id=#{id}
+	</update>
+	<insert id="insertInfo" parameterType="swing.ywl.info.model.Info"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into sys_user (name,age,cid) values (#{name},#{age},#{cid})
-	</insert> -->
+		insert into info 
+			(field_string1,field_string2,field_string3,field_string4,field_string5,
+			field_string6,field_string7,field_string8,field_string9,field_string10,
+			field_string11,field_string12,field_string13,field_string14,field_string15,
+			field_string16,field_string17,field_string18,field_string19,field_string20,
+			field_string21,field_string22,field_int1,field_int2,field_int3,field_int4,
+			field_int5,field_int6,field_int7,field_int8,field_int9,field_date1,field_date2,
+			field_date3,field_date4,field_date5,field_date6,field_date7,field_date8,field_date9,
+			field_date10) 
+		values 
+			(#{fieldStr1},#{fieldStr2},#{fieldStr3},#{fieldStr4},#{fieldStr5},
+			#{fieldStr6},#{fieldStr7},#{fieldStr8},#{fieldStr9},#{fieldStr10},
+			#{fieldStr11},#{fieldStr12},#{fieldStr13},#{fieldStr14},#{fieldStr15},
+			#{fieldStr16},#{fieldStr17},#{fieldStr18},#{fieldStr19},#{fieldStr20},
+			#{fieldStr21},#{fieldStr22},#{fieldInt1},#{fieldInt2},#{fieldInt3},#{fieldInt4},
+			#{fieldInt5},#{fieldInt6},#{fieldInt7},#{fieldInt8},#{fieldInt9},#{fieldDate1},#{fieldDate2},
+			#{fieldDate3},#{fieldDate4},#{fieldDate5},#{fieldDate6},#{fieldDate7},#{fieldDate8},#{fieldDate9},
+			#{fieldDate10})
+	</insert>
 </mapper>
