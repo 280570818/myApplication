@@ -6,8 +6,17 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	<title>主页</title>
+	<style type="text/css">
+		body .container{
+			border: 1px solid #d6d6d6;
+		}
+		.contentBackground{
+			border: 1px solid #d6d6d6;
+			background-color: #d8d8d8;
+		}
+	</style>
 </head>
-<body style="background-color: #545454;">
+<body style="background-color: #ececec;">
  	<div class="container">
  		<br/>
 		<nav class="navbar navbar-inverse">
@@ -23,7 +32,7 @@
             </div> -->
         </nav>
         <div id="content" class="row-fluid">
-			<div class="col-md-3">
+			<div class="col-md-3 contentBackground">
 		   		<h2>菜单栏</h2>  
 			    <ul class="nav nav-tabs nav-stacked">
 			        <li><a href='#'>菜单1</a></li>
@@ -31,8 +40,29 @@
 			        <li><a href='#'>菜单3</a></li>
 			    </ul>    
 		  	</div>
-      		<div class="col-md-9">
-          		<h2>Main Content Section</h2>
+      		<div class="col-md-9 contentBackground">
+          		<div class="tabbable" id="tabs-152867">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							 <a href="#panel-364027" data-toggle="tab">Section 1</a>
+						</li>
+						<li>
+							 <a href="#panel-828525" data-toggle="tab">Section 2</a>
+						</li>
+					</ul>
+					<div class="tab-content active">
+						<div class="tab-pane" id="panel-364027">
+							<p>
+								I'm in Section 1.
+							</p>
+						</div>
+						<div class="tab-pane " id="panel-828525">
+							<p>
+								Howdy, I'm in Section 2.
+							</p>
+						</div>
+					</div>
+				</div>
 	      	</div>
 		</div>
 	</div>

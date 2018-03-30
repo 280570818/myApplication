@@ -8,7 +8,10 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring.xml</param-value>
 	</context-param>
-	
+	<context-param>
+		<param-name>resourcePath</param-name>
+		<param-value>resource.properties</param-value>
+	</context-param>
 	<!-- 监听器 -->
 	<listener>
 		<listener-class>swing.sys.listener.ResourceListener</listener-class>
