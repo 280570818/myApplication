@@ -3,7 +3,54 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="swing.ywl.info.mapper.InfoMapper">
-	<select id="getInfoById" parameterType="long" resultType="swing.ywl.info.model.Info">
+	<resultMap type="swing.ywl.info.model.Info" id="info">
+		<result property="id" column="id"/>
+		<result property="fieldStr1" column="field_string1"/>
+		<result property="fieldStr2" column="field_string2"/>
+		<result property="fieldStr3" column="field_string3"/>
+		<result property="fieldStr4" column="field_string4"/>
+		<result property="fieldStr5" column="field_string5"/>
+		<result property="fieldStr6" column="field_string6"/>
+		<result property="fieldStr7" column="field_string7"/>
+		<result property="fieldStr8" column="field_string8"/>
+		<result property="fieldStr9" column="field_string9"/>
+		<result property="fieldStr10" column="field_string10"/>
+		<result property="fieldStr11" column="field_string11"/>
+		<result property="fieldStr12" column="field_string12"/>
+		<result property="fieldStr13" column="field_string13"/>
+		<result property="fieldStr14" column="field_string14"/>
+		<result property="fieldStr15" column="field_string15"/>
+		<result property="fieldStr16" column="field_string16"/>
+		<result property="fieldStr17" column="field_string17"/>
+		<result property="fieldStr18" column="field_string18"/>
+		<result property="fieldStr19" column="field_string19"/>
+		<result property="fieldStr20" column="field_string20"/>
+		<result property="fieldStr21" column="field_string21"/>
+		<result property="fieldStr22" column="field_string22"/>
+		<result property="fieldInt1" column="field_int1"/>
+		<result property="fieldInt2" column="field_int2"/>
+		<result property="fieldInt3" column="field_int3"/>
+		<result property="fieldInt4" column="field_int4"/>
+		<result property="fieldInt5" column="field_int5"/>
+		<result property="fieldInt6" column="field_int6"/>
+		<result property="fieldInt7" column="field_int7"/>
+		<result property="fieldInt8" column="field_int8"/>
+		<result property="fieldInt9" column="field_int9"/>
+		<result property="fieldDate1" column="field_date1"/>
+		<result property="fieldDate2" column="field_date2"/>
+		<result property="fieldDate3" column="field_date3"/>
+		<result property="fieldDate4" column="field_date4"/>
+		<result property="fieldDate5" column="field_date5"/>
+		<result property="fieldDate6" column="field_date6"/>
+		<result property="fieldDate7" column="field_date7"/>
+		<result property="fieldDate8" column="field_date8"/>
+		<result property="fieldDate9" column="field_date9"/>
+		<result property="fieldDate10" column="field_date10"/>
+	</resultMap>
+	<select id="getAll" resultMap="info">
+		select * from info
+	</select>
+	<select id="getInfoById" parameterType="long" resultMap="info">
 		select * from info where id=#{id}
 	</select>
 	<delete id="deleteInfoById" parameterType="long">
@@ -12,47 +59,48 @@
 	<update id="updateInfoById" parameterType="swing.ywl.info.model.Info">
 		update info 
 			<set>
-				<if test="fieldStr1 != null">field_string1=fieldStr1,</if>
-				<if test="fieldStr2 != null">field_string2=fieldStr2,</if>
-				<if test="fieldStr3 != null">field_string3=fieldStr3,</if>
-				<if test="fieldStr4 != null">field_string4=fieldStr4,</if>
-				<if test="fieldStr5 != null">field_string5=fieldStr5,</if>
-				<if test="fieldStr6 != null">field_string6=fieldStr6,</if>
-				<if test="fieldStr7 != null">field_string7=fieldStr7,</if>
-				<if test="fieldStr8 != null">field_string8=fieldStr8,</if>
-				<if test="fieldStr9 != null">field_string9=fieldStr9,</if>
-				<if test="fieldStr10 != null">field_string10=fieldStr10,</if>
-				<if test="fieldStr11 != null">field_string11=fieldStr11,</if>
-				<if test="fieldStr12 != null">field_string12=fieldStr12,</if>
-				<if test="fieldStr13 != null">field_string13=fieldStr13,</if>
-				<if test="fieldStr14 != null">field_string14=fieldStr14,</if>
-				<if test="fieldStr15 != null">field_string15=fieldStr15,</if>
-				<if test="fieldStr16 != null">field_string16=fieldStr16,</if>
-				<if test="fieldStr17 != null">field_string17=fieldStr17,</if>
-				<if test="fieldStr18 != null">field_string18=fieldStr18,</if>
-				<if test="fieldStr19 != null">field_string19=fieldStr19,</if>
-				<if test="fieldStr20 != null">field_string20=fieldStr20,</if>
-				<if test="fieldStr21 != null">field_string21=fieldStr21,</if>
-				<if test="fieldStr22 != null">field_string22=fieldStr22,</if>
-				<if test="fieldInt1 != null">field_int1=fieldInt1,</if>
-				<if test="fieldInt2 != null">field_int2=fieldInt2,</if>
-				<if test="fieldInt3 != null">field_int3=fieldInt3,</if>
-				<if test="fieldInt4 != null">field_int4=fieldInt4,</if>
-				<if test="fieldInt5 != null">field_int5=fieldInt5,</if>
-				<if test="fieldInt6 != null">field_int6=fieldInt6,</if>
-				<if test="fieldInt7 != null">field_int7=fieldInt7,</if>
-				<if test="fieldInt8 != null">field_int8=fieldInt8,</if>
-				<if test="fieldInt9 != null">field_int9=fieldInt9,</if>
-				<if test="fieldDate1 != null">field_date1=fieldDate1,</if>
-				<if test="fieldDate2 != null">field_date2=fieldDate2,</if>
-				<if test="fieldDate3 != null">field_date3=fieldDate3,</if>
-				<if test="fieldDate4 != null">field_date4=fieldDate4,</if>
-				<if test="fieldDate5 != null">field_date5=fieldDate5,</if>
-				<if test="fieldDate6 != null">field_date6=fieldDate6,</if>
-				<if test="fieldDate7 != null">field_date7=fieldDate7,</if>
-				<if test="fieldDate8 != null">field_date8=fieldDate8,</if>
-				<if test="fieldDate9 != null">field_date9=fieldDate9,</if>
-				<if test="fieldDate10 != null">field_date10=fieldDate10,</if>
+				<if test="id != null">ID=#{id},</if>
+				<if test="fieldStr1 != null">FIELD_STR_1=#{fieldStr1},</if>
+				<if test="fieldStr2 != null">FIELD_STR_2=#{fieldStr2},</if>
+				<if test="fieldStr3 != null">FIELD_STR_3=#{fieldStr3},</if>
+				<if test="fieldStr4 != null">FIELD_STR_4=#{fieldStr4},</if>
+				<if test="fieldStr5 != null">FIELD_STR_5=#{fieldStr5},</if>
+				<if test="fieldStr6 != null">FIELD_STR_6=#{fieldStr6},</if>
+				<if test="fieldStr7 != null">FIELD_STR_7=#{fieldStr7},</if>
+				<if test="fieldStr8 != null">FIELD_STR_8=#{fieldStr8},</if>
+				<if test="fieldStr9 != null">FIELD_STR_9=#{fieldStr9},</if>
+				<if test="fieldStr10 != null">FIELD_STR_1_0=#{fieldStr10},</if>
+				<if test="fieldStr11 != null">FIELD_STR_1_1=#{fieldStr11},</if>
+				<if test="fieldStr12 != null">FIELD_STR_1_2=#{fieldStr12},</if>
+				<if test="fieldStr13 != null">FIELD_STR_1_3=#{fieldStr13},</if>
+				<if test="fieldStr14 != null">FIELD_STR_1_4=#{fieldStr14},</if>
+				<if test="fieldStr15 != null">FIELD_STR_1_5=#{fieldStr15},</if>
+				<if test="fieldStr16 != null">FIELD_STR_1_6=#{fieldStr16},</if>
+				<if test="fieldStr17 != null">FIELD_STR_1_7=#{fieldStr17},</if>
+				<if test="fieldStr18 != null">FIELD_STR_1_8=#{fieldStr18},</if>
+				<if test="fieldStr19 != null">FIELD_STR_1_9=#{fieldStr19},</if>
+				<if test="fieldStr20 != null">FIELD_STR_2_0=#{fieldStr20},</if>
+				<if test="fieldStr21 != null">FIELD_STR_2_1=#{fieldStr21},</if>
+				<if test="fieldStr22 != null">FIELD_STR_2_2=#{fieldStr22},</if>
+				<if test="fieldInt1 != null">FIELD_INT_1=#{fieldInt1},</if>
+				<if test="fieldInt2 != null">FIELD_INT_2=#{fieldInt2},</if>
+				<if test="fieldInt3 != null">FIELD_INT_3=#{fieldInt3},</if>
+				<if test="fieldInt4 != null">FIELD_INT_4=#{fieldInt4},</if>
+				<if test="fieldInt5 != null">FIELD_INT_5=#{fieldInt5},</if>
+				<if test="fieldInt6 != null">FIELD_INT_6=#{fieldInt6},</if>
+				<if test="fieldInt7 != null">FIELD_INT_7=#{fieldInt7},</if>
+				<if test="fieldInt8 != null">FIELD_INT_8=#{fieldInt8},</if>
+				<if test="fieldInt9 != null">FIELD_INT_9=#{fieldInt9},</if>
+				<if test="fieldDate1 != null">FIELD_DATE_1=#{fieldDate1},</if>
+				<if test="fieldDate2 != null">FIELD_DATE_2=#{fieldDate2},</if>
+				<if test="fieldDate3 != null">FIELD_DATE_3=#{fieldDate3},</if>
+				<if test="fieldDate4 != null">FIELD_DATE_4=#{fieldDate4},</if>
+				<if test="fieldDate5 != null">FIELD_DATE_5=#{fieldDate5},</if>
+				<if test="fieldDate6 != null">FIELD_DATE_6=#{fieldDate6},</if>
+				<if test="fieldDate7 != null">FIELD_DATE_7=#{fieldDate7},</if>
+				<if test="fieldDate8 != null">FIELD_DATE_8=#{fieldDate8},</if>
+				<if test="fieldDate9 != null">FIELD_DATE_9=#{fieldDate9},</if>
+				<if test="fieldDate10 != null">FIELD_DATE_1_0=#{fieldDate10},</if>
 			</set>
 		where
 			id=#{id}

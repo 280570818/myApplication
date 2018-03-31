@@ -16,4 +16,21 @@ public class UserService {
 		userMapper.save(s);
 	}
 
+	public User login(User user) {
+		User u = userMapper.getUserByUserName(user.getUserName());
+		if(u == null || !u.getPassword().equals(user.getPassword())){
+			return null;
+		}else{
+			return u;
+		}
+	}
+
+	public String userNameIsExists(String userName) {
+		return String.valueOf(userMapper.userNameIsExists(userName));
+	}
+
+	public void updateUserById(User user) {
+		userMapper.updateUserById(user);
+	}
+
 }

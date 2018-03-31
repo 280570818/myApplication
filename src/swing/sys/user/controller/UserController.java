@@ -11,6 +11,7 @@ import swing.sys.user.service.UserService;
 
 @Controller
 @Scope(value="prototype")
+@RequestMapping("/user")
 public class UserController {
 	@Autowired
 	private UserService userService;

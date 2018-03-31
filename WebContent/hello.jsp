@@ -10,60 +10,50 @@
 		body .container{
 			border: 1px solid #d6d6d6;
 		}
+		#header{
+			margin: 15px auto;
+			padding: 20px 0;
+			text-align: center;
+			border: 1px solid #d4d2d2;
+			background-color: #e4e4e4;
+		}
+		#footer{
+			margin: 10px auto;
+			padding: 5px 0;
+			text-align: center;
+			border: 1px solid #d4d2d2;
+			background-color: #e4e4e4;
+		}
 		.contentBackground{
-			border: 1px solid #d6d6d6;
-			background-color: #d8d8d8;
+			border: 1px solid #d4d2d2;
+			background-color: #e4e4e4;
+			height: 100%;
 		}
 	</style>
 </head>
 <body style="background-color: #ececec;">
  	<div class="container">
- 		<br/>
-		<nav class="navbar navbar-inverse">
-            <div class="navbar-header">
-			    <a class="navbar-brand" href="#">首页导航</a>
-			</div>
-			<!-- <div class="navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#">Page One</a></li>
-                    <li><a href="#">Page Two</a></li>
-                </ul>
-            </div> -->
-        </nav>
+		<div id="header">
+			12323
+		</div>
         <div id="content" class="row-fluid">
-			<div class="col-md-3 contentBackground">
-		   		<h2>菜单栏</h2>  
+			<div class="col-md-2 contentBackground">
+		   		<h4>自助服务：</h4>  
 			    <ul class="nav nav-tabs nav-stacked">
 			        <li><a href='#'>菜单1</a></li>
 			        <li><a href='#'>菜单2</a></li>
 			        <li><a href='#'>菜单3</a></li>
 			    </ul>    
 		  	</div>
-      		<div class="col-md-9 contentBackground">
-          		<div class="tabbable" id="tabs-152867">
-					<ul class="nav nav-tabs">
-						<li class="active">
-							 <a href="#panel-364027" data-toggle="tab">Section 1</a>
-						</li>
-						<li>
-							 <a href="#panel-828525" data-toggle="tab">Section 2</a>
-						</li>
-					</ul>
-					<div class="tab-content active">
-						<div class="tab-pane" id="panel-364027">
-							<p>
-								I'm in Section 1.
-							</p>
-						</div>
-						<div class="tab-pane " id="panel-828525">
-							<p>
-								Howdy, I'm in Section 2.
-							</p>
-						</div>
-					</div>
-				</div>
+      		<div class="col-md-10 contentBackground">
+      			<iframe src="http://www.baidu.com">
+      			
+      			</iframe>
 	      	</div>
+		</div>
+		<div class="clearfix"></div>
+		<div id="footer">
+			重庆市
 		</div>
 	</div>
 </body>

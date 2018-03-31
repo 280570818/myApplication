@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="swing.ywl.info.mapper.DescriptionMapper">
+	<resultMap type="swing.ywl.info.model.Description" id="description">
+		<result property="id" column="ID"/>
+		<result property="columnName" column="COLUMNNAME"/>
+		<result property="columnDesc" column="COLUMNDESC"/>
+	</resultMap>
+	<select id="getAllDescription" resultMap="description">
+		select ID,COLUMNNAME,COLUMNDESC from description
+	</select>
+	<select id="getDescriptionById" parameterType="long" resultMap="description">
+		select ID,COLUMNNAME,COLUMNDESC from description where id=#{id}
+	</select>
+	<delete id="deleteDescriptionById" parameterType="long">
+		delete from description where id=#{id}
+	</delete>
+	<update id="updateDescriptionById" parameterType="swing.ywl.info.model.Description">
+		update info 
+			<set>
+				<if test="id != null">ID=#{id},</if>
+				<if test="columnName != null">COLUMNNAME=#{columnName},</if>
+				<if test="columnDesc != null">COLUMNDESC=#{columnDesc},</if>
+			</set>
+		where
+			id=#{id}
+	</update>
+	<insert id="insertDescription" parameterType="swing.ywl.info.model.Description"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into info 
+			(COLUMNNAME,COLUMNDESC) 
+		values 
+			(#{columnName},#{columnDesc})
+	</insert>
+</mapper>

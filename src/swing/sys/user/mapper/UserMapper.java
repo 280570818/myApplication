@@ -6,4 +6,9 @@ public interface UserMapper {
 
 	public void save(User s);
 
+	public User getUserByUserName(String userName);
+	
+	public void updateUserById(User u);
+	
+	public Integer userNameIsExists(String userName);
 }

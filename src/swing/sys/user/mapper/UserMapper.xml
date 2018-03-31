@@ -3,8 +3,59 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="swing.sys.user.mapper.UserMapper">
+	<resultMap type="swing.sys.user.model.User" id="user">
+		<result property="id" column="ID"/>
+		<result property="cid" column="CID"/>
+		<result property="userName" column="USER_NAME"/>
+		<result property="password" column="PASSWORD"/>
+		<result property="email" column="EMAIL"/>
+		<result property="sex" column="SEX"/>
+		<result property="name" column="NAME"/>
+		<result property="idCardNo" column="ID_CARD_NO"/>
+		<result property="phoneNo" column="PHONE_NO"/>
+		<result property="schoolName" column="SCHOOL_NAME"/>
+		<result property="className" column="CLASS_NAME"/>
+		<result property="birthday" column="BIRTHDAY"/>
+		<result property="qqAccount" column="QQ_ACCOUNT"/>
+		<result property="weiChatAccount" column="WEI_CHAT_ACCOUNT"/>
+	</resultMap>
+
+	<select id="userNameIsExists" parameterType="string" resultType="int">
+		SELECT COUNT(ID) FROM USER WHERE USER_NAME=#{u}
+	</select>
+
+	<select id="getUserByUserName" parameterType="string" resultMap="user">
+		SELECT * FROM USER WHERE USER_NAME=#{userName}		
+	</select>
+
+	<update id="updateUserById" parameterType="swing.sys.user.model.User">
+		UPDATE USER
+		<set>
+			<if test="id != null">ID=#{id},</if>
+			<if test="cid != null">CID=#{cid},</if>
+			<if test="userName != null">USER_NAME=#{userName},</if>
+			<if test="password != null">PASSWORD=#{password},</if>
+			<if test="email != null">EMAIL=#{email},</if>
+			<if test="sex != null">SEX=#{sex},</if>
+			<if test="name != null">NAME=#{name},</if>
+			<if test="idCardNo != null">ID_CARD_NO=#{idCardNo},</if>
+			<if test="phoneNo != null">PHONE_NO=#{phoneNo},</if>
+			<if test="schoolName != null">SCHOOL_NAME=#{schoolName},</if>
+			<if test="className != null">CLASS_NAME=#{className},</if>
+			<if test="birthday != null">BIRTHDAY=#{birthday},</if>
+			<if test="qqAccount != null">QQ_ACCOUNT=#{qqAccount},</if>
+			<if test="weiChatAccount != null">WEI_CHAT_ACCOUNT=#{weiChatAccount},</if>
+		</set>
+		where id=#{id}
+	</update>
+	
 	<insert id="save" parameterType="swing.sys.user.model.User"
 		useGeneratedKeys="true" keyProperty="id">
-		insert into sys_user (name,age,cid) values (#{name},#{age},#{cid})
+		INSERT INTO USER 
+			(CID,USER_NAME,PASSWORD,EMAIL,SEX,NAME,ID_CARD_NO,PHONE_NO,
+			SCHOOL_NAME,CLASS_NAME,BIRTHDAY,QQ_ACCOUNT,WEI_CHAT_ACCOUNT) 
+		VALUES 
+			(#{cid},#{userName},#{password},#{email},#{sex},#{name},#{idCardNo},#{phoneNo},
+			#{schoolName},#{className},#{birthday},#{qqAccount},#{weiChatAccount})
 	</insert>
 </mapper>
