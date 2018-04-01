@@ -3,6 +3,7 @@ package swing.sys.user.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import swing.sys.common.util.BaseUtil;
 import swing.sys.user.mapper.UserMapper;
 import swing.sys.user.model.User;
 
@@ -31,6 +32,17 @@ public class UserService {
 
 	public void updateUserById(User user) {
 		userMapper.updateUserById(user);
+	}
+
+	public String forget(String email) {
+		User user = userMapper.getUserByEmail(email);
+		if(BaseUtil.isNullOrEmpty(user)){
+			return "该邮箱地址尚未注册帐号，请检查";
+		}
+		//发送邮件
+		
+		//发送邮件成功
+		return null;
 	}
 
 }

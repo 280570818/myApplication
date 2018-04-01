@@ -2,7 +2,6 @@ package swing.sys.user.controller;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
-import java.util.Enumeration;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import swing.sys.SessionManager;
+import swing.sys.common.ReturnObj;
 import swing.sys.common.util.BaseUtil;
 import swing.sys.user.model.User;
 import swing.sys.user.service.UserService;
@@ -68,6 +68,17 @@ public class LoginController {
 		userService.save(user);
 		request.setAttribute(REGIST_FLAG, "注册成功，请登录");
 		return "login";
+	}
+	
+	@RequestMapping("/forget")
+	@ResponseBody
+	public ReturnObj forget (HttpServletRequest request, String email){
+		String forget = userService.forget(email);
+		if(BaseUtil.isNullOrEmpty(forget)){
+			return BaseUtil.getReturnObj(true, "邮件发送成功，请前往邮件查看", null, 0);
+		}else{
+			return BaseUtil.getReturnObj(false, forget, null, 0);
+		}
 	}
 	
 	@RequestMapping("/infoRegist")

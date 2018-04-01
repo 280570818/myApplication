@@ -47,11 +47,11 @@
 		                    </div>
 		                   	<div class="modal-body">
 		                       	<p>请输入您注册帐号时填写的Email地址</p>
-		                       	<input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
+		                       	<input type="text" name="email" placeholder="电子邮件地址" autocomplete="off" class="form-control placeholder-no-fix">
 		                  	</div>
 		                  	<div class="modal-footer">
 		                      	<button data-dismiss="modal" class="btn btn-default" type="button">取消</button>
-		                      	<button class="btn btn-theme" type="button">提交</button>
+		                      	<button data-dismiss="modal" class="btn btn-theme" type="button" id="forgetSubmit" >提交</button>
 		                	</div>
 		           		</div>
 					</div>
@@ -69,6 +69,26 @@
     </script>
 </body>
 <script type="text/javascript">
+	$("#forgetSubmit").click(function(){
+		$("#loginWarn").text("");
+		$("#loginNotice").text("");
+		var email = $("#loginForm input[name='email']").val();
+		if(!isEmail(email)){
+			$("#loginWarn").text("请填写正确的邮箱地址！");
+			return;
+		}
+		$.post(
+			"${pageContext.request.contextPath}/login/forget.json",
+			{email: email},
+			function (msg){
+				if(msg.success){
+					$("#loginNotice").text("重置密码邮件已发送至您的邮箱！");
+				}else{
+					$("#loginWarn").text(msg.message);
+				}
+			}
+		);
+	});
 	function loginCheck() {
 		$("#loginWarn").text("");
 		$("#loginNotice").text("");

@@ -18,3 +18,8 @@ function isPhoneNo(str){
 	var reg = /^1\d{10}$/;
 	return reg.test(str);
 }
+
+function isEmail(str){
+	var reg = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+$/ ;
+	return reg.test(str);
+}

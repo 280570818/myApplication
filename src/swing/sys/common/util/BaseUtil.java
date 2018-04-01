@@ -4,11 +4,25 @@ import java.util.Collection;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+import swing.sys.common.ReturnObj;
+
 /**
  * 全局基础工具
  * @author wang_xf
  */
 public class BaseUtil {
+	
+	/**
+	 * 异步返回通用类
+	 */
+	public static ReturnObj getReturnObj(boolean success, String msg, Object data, int flag){
+		ReturnObj returnObj = new ReturnObj();
+		returnObj.setData(data);
+		returnObj.setFlag(flag);
+		returnObj.setMessage(msg);
+		returnObj.setSuccess(success);
+		return returnObj; 
+	}
 
 	/**
 	 * 正则匹配

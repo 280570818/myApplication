@@ -1,6 +1,7 @@
 <%@page import="swing.sys.SessionManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/views/common/taglibs.jsp" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <%
 	request.setAttribute("user", session.getAttribute(SessionManager.SESSION_USER));
@@ -40,7 +41,7 @@
 		            	<input type="text" class="form-control" name="qqAccount" value="${user.qqAccount}" placeHolder="QQ号码" onchange="qqAccountChange();">
 		            </div>
 		            <div class="col-md-6 contentInput">
-		            	<input type="text" class="form-control" name="birthday" value="${user.birthday}" placeHolder="生日">
+		            	<input type="text" class="form-control" name="birthday" value='<fmt:formatDate value="${user.birthday}"/>' placeHolder="生日">
 		            </div>
 		            <div class="col-md-6 contentInput">
 		            	<input type="text" class="form-control" name="weiChatAccount" value="${user.weiChatAccount}" placeHolder="微信号码">

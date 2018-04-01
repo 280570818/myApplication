@@ -27,6 +27,10 @@
 	<select id="getUserByUserName" parameterType="string" resultMap="user">
 		SELECT * FROM USER WHERE USER_NAME=#{userName}		
 	</select>
+	
+	<select id="getUserByEmail" parameterType="string" resultMap="user">
+		SELECT * FROM USER WHERE EMAIL=#{userName}
+	</select>
 
 	<update id="updateUserById" parameterType="swing.sys.user.model.User">
 		UPDATE USER

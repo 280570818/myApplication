@@ -17,6 +17,7 @@
       			method="post" onsubmit="return registCheck();" id="registForm">
 		        <h2 class="form-login-heading">帐号注册</h2>
 		        <div class="login-wrap">
+		        	<input type="hidden" name="cid" value="1">
 		            <input type="text" class="form-control" placeholder="用户名（支持中文哦）" name="userName" autofocus onblur="checkUserName();">
 		            <br/>
 		            <input type="password" class="form-control" placeholder="密码" name="password">

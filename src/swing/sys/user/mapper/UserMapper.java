@@ -8,6 +8,8 @@ public interface UserMapper {
 
 	public User getUserByUserName(String userName);
 	
+	public User getUserByEmail(String email);
+	
 	public void updateUserById(User u);
 	
 	public Integer userNameIsExists(String userName);
