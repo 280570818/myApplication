@@ -16,7 +16,11 @@
       		<form class="form-login" action="${pageContext.request.contextPath}/login/login.html" 
       			method="post" onsubmit="return loginCheck();" id="loginForm">
 		        <h2 class="form-login-heading">安安宝贝我错了</h2>
+		        <!-- 我听到你俩说话了 你听得到我们说话？ -->
+		        <!-- 今晚我们估计不得加班为什么因为技术部老大不在，我们没人管 -->
+		        <!-- 安安帮老公做一个主页，普通的主页模板像这种 你要做什么， -->
 		        <div class="login-wrap">
+		        
 		            <input type="text" class="form-control" placeholder="用户名" name="userName" autofocus>
 		            <br>
 		            <input type="password" class="form-control" placeholder="密码" name="password">
