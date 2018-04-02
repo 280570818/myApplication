@@ -1,7 +1,6 @@
 package swing.sys.user.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import swing.sys.SessionManager;
 import swing.sys.common.ReturnObj;
 import swing.sys.common.util.BaseUtil;
-import swing.sys.common.util.MailSender;
-import swing.sys.common.util.SpringUtil;
 import swing.sys.user.model.User;
 import swing.sys.user.service.UserService;
 
@@ -39,31 +36,14 @@ public class LoginController {
 		User u = userService.login(user);
 		if(u != null){
 			request.getSession().setAttribute(SessionManager.SESSION_USER, u);
-			return userInfoIsOK(u)?"home":"infoRegist";
+			SessionManager.setUser(request.getSession(), u);
+			return BaseUtil.userInfoIsOK(u)?"home":"infoRegist";
 		}else{
 			request.setAttribute(LoginController.LOGIN_FLAG, "对不起！账户/密码错误！");
 			return "login";
 		}
 	}
 	
-	/**
-	 * 判断用户信息是否完整
-	 */
-	public static boolean userInfoIsOK(User u) {
-		Field[] fields = u.getClass().getDeclaredFields();
-		for (Field field : fields) {
-			field.setAccessible(true);
-			try {
-				Object object = field.get(u);
-				if(BaseUtil.isNullOrEmpty(object))
-					return false;
-			} catch (IllegalArgumentException | IllegalAccessException e) {
-				e.printStackTrace();
-			}
-		}
-		return false;
-	}
-
 	@RequestMapping("/regist")
 	public String regist (HttpServletRequest request, User user){
 		System.out.println(user);
@@ -87,6 +67,7 @@ public class LoginController {
 	public String infoRegist (HttpServletRequest request, User user){
 		System.out.println(user);
 		userService.updateUserById(user);
+		
 		return "home";
 	}
 	

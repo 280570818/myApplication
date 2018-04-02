@@ -1,10 +1,12 @@
 package swing.sys.common.util;
 
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.Map;
 import java.util.regex.Pattern;
 
 import swing.sys.common.ReturnObj;
+import swing.sys.user.model.User;
 
 /**
  * 全局基础工具
@@ -43,6 +45,24 @@ public class BaseUtil {
 			return true;
 		if(obj instanceof Map && ((Map<?, ?>)obj).size()==0)
 			return true;
+		return false;
+	}
+	
+	/**
+	 * 判断用户信息是否完整
+	 */
+	public static boolean userInfoIsOK(User u) {
+		Field[] fields = u.getClass().getDeclaredFields();
+		for (Field field : fields) {
+			field.setAccessible(true);
+			try {
+				Object object = field.get(u);
+				if(BaseUtil.isNullOrEmpty(object))
+					return false;
+			} catch (IllegalArgumentException | IllegalAccessException e) {
+				e.printStackTrace();
+			}
+		}
 		return false;
 	}
 }
