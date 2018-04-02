@@ -13,8 +13,11 @@
 						http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-
+						
 	<context:property-placeholder location="classpath:jdbc.properties" />
+<!-- 	<context:property-placeholder location="classpath:resource.properties" /> -->
+	<import resource="spring-others.xml"/>
+
 	<context:component-scan base-package="swing"
 		use-default-filters="false">
 		<context:include-filter type="annotation"

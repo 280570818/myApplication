@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import swing.sys.SessionManager;
 import swing.sys.common.ReturnObj;
 import swing.sys.common.util.BaseUtil;
+import swing.sys.common.util.MailSender;
+import swing.sys.common.util.SpringUtil;
 import swing.sys.user.model.User;
 import swing.sys.user.service.UserService;
 
@@ -96,7 +98,6 @@ public class LoginController {
 	
 	@RequestMapping("/loginUI")
 	public String loginUI(HttpServletRequest request){
-		
 		return "login";
 	}
 	

@@ -15,7 +15,7 @@
   		<div class="container">
       		<form class="form-login" action="${pageContext.request.contextPath}/login/login.html" 
       			method="post" onsubmit="return loginCheck();" id="loginForm">
-		        <h2 class="form-login-heading">欢迎光临</h2>
+		        <h2 class="form-login-heading">安安宝贝我错了</h2>
 		        <div class="login-wrap">
 		            <input type="text" class="form-control" placeholder="用户名" name="userName" autofocus>
 		            <br>
