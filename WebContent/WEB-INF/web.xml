@@ -3,20 +3,26 @@
 	xmlns="http://java.sun.com/xml/ns/javaee"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
 	id="WebApp_ID" version="3.0">
+	<!-- 这是web。xml文件 -->
+	<!-- 初始化参数指定了spring的配置文件位置 那老公等会讲，赶快去l -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:spring.xml</param-value>
 	</context-param>
+	<!-- 初始化参数  指定了系统常用参数 可以配置系统运行需要的个别个性化数据 -->
 	<context-param>
 		<param-name>resourcePath</param-name>
 		<param-value>resource.properties</param-value>
 	</context-param>
+	<!-- 这个监听器就是专门读取个性化数据的 -->
 	<listener>
 		<listener-class>swing.sys.listener.ResourceListener</listener-class>
 	</listener>
+	<!-- spring容器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- 请求转码的过滤器  spring提供的 -->
 	<filter>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -25,15 +31,19 @@
 			<param-value>utf-8</param-value>
 		</init-param>
 	</filter>
+	<!-- 登陆状态检查的过滤器  我自定义的 -->
 	<filter>
 		<filter-name>loginFilter</filter-name>
 		<filter-class>swing.sys.filter.LoginFilter</filter-class>
 		<init-param>
+			<description>如果是下面这些请求路径，将不检查登陆状态（不需登陆就能访问）多个用逗号隔开</description>
 			<param-name>ignorPath</param-name>
 			<param-value>/login/loginUI.html,/login/login.html,/login/registUI.html,/login/regist.html,/login/usernameisexists.html,/login/forget.json</param-value>
 		</init-param>
 	</filter>
+	
 	<servlet>
+		<description>这个是springmvc的配置</description>
 		<servlet-name>springDispatcherServlet</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
@@ -42,6 +52,8 @@
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
+	
+	<!-- 下面的全部是过滤器和servlet的请求映射（哪些请求需要过滤，需要servlet处理） -->
 	<filter-mapping>
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
@@ -56,4 +68,6 @@
 		<url-pattern>*.html</url-pattern>
 		<url-pattern>*.json</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 然后就完了 -->
 </web-app>

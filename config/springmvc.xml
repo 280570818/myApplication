@@ -7,9 +7,13 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
-
+		
+	<!-- springMVC的配置文件 -->
+	<!-- 这个是注解驱动开启 -->
 	<mvc:annotation-driven>
+		<!-- 消息转换器 -->
 		<mvc:message-converters>
+			<!-- 指定了打了responseBody注解的返回值将会使用FastJsonHttpMessageConverter这个转换器来处理稍等下，自己再看看，1分钟 -->
 			<bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter">
 				<property name="supportedMediaTypes">
 					<list>
@@ -20,17 +24,15 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	<mvc:default-servlet-handler />
-	<context:component-scan base-package="swing"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Repository" />
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
+	<!-- 这是组件扫描   扫描swing包下的所有类include包含打了Controller注解的类，exclude不包含Repository注解的类和Service注解的类-->
+	<!-- 意思就是springmvc只要controller，不要service和repsitory -->
+	<context:component-scan base-package="swing" use-default-filters="false">
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Service" />
 	</context:component-scan>
-	<bean
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<!-- 视图解析器   比如controller返回一个字符串"login"  这里将给login加上前缀/WEB-INF/views/和后缀.jsp最终结果/WEB-INF/views/login.jsp -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/views/"></property>
 		<property name="suffix" value=".jsp"></property>
 	</bean>

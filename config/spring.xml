@@ -14,15 +14,16 @@
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 
+	<!-- 这是spring的配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties" />
-	<context:component-scan base-package="swing"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Repository" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+	<!-- spring的扫描  扫描swing包下的所有类 -->
+	<context:component-scan base-package="swing" use-default-filters="false">
+		<!-- 包括Repository -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<!-- 包括Service -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<!-- 不       包括Controller -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
