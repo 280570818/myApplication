@@ -13,22 +13,20 @@
 						http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
 						http://www.springframework.org/schema/tx 
 						http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
-						
-	<context:property-placeholder location="classpath:jdbc.properties" />
-<!-- 	<context:property-placeholder location="classpath:resource.properties" /> -->
-	<import resource="spring-others.xml"/>
 
-	<context:component-scan base-package="swing"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Repository" />
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Service" />
-		<context:exclude-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
+	<!-- 这是spring的配置文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties" />
+	<import resource="spring-others.xml"/>
+	<!-- spring的扫描  扫描swing包下的所有类 -->
+	<context:component-scan base-package="swing" use-default-filters="false">
+		<!-- 包括Repository -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository" />
+		<!-- 包括Service -->
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service" />
+		<!-- 不       包括Controller -->
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		init-method="init" destroy-method="close">
+	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc.url}"></property>
 		<property name="driverClassName" value="${jdbc.driver}"></property>
 		<property name="username" value="${jdbc.user}"></property>
@@ -42,8 +40,7 @@
 		<property name="basePackage" value="swing"></property>
 		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
 	</bean>
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	<tx:advice id="myAdvice" transaction-manager="transactionManager">
@@ -52,8 +49,7 @@
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
-		<aop:pointcut expression="execution(* swing.*.service.*(..))"
-			id="myponitcut" />
+		<aop:pointcut expression="execution(* swing.*.service.*(..))" id="myponitcut" />
 		<aop:advisor advice-ref="myAdvice" pointcut-ref="myponitcut" />
 	</aop:config>
 </beans>

@@ -35,6 +35,7 @@ public class LoginFilter implements Filter {
 			if(!req.getRequestURI().endsWith("/")){
 				req.setAttribute(LoginController.LOGIN_FLAG, "会话过期！请重新登录！");
 			}
+			//请求路径为/而且没有登陆的，就去登陆页面
 			request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, response);
 		}else{
 			chain.doFilter(request, response);
