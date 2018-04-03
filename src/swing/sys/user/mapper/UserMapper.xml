@@ -35,7 +35,6 @@
 	<update id="updateUserById" parameterType="swing.sys.user.model.User">
 		UPDATE USER
 		<set>
-			<if test="id != null">ID=#{id},</if>
 			<if test="cid != null">CID=#{cid},</if>
 			<if test="userName != null">USER_NAME=#{userName},</if>
 			<if test="password != null">PASSWORD=#{password},</if>
