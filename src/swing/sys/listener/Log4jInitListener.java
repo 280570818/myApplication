@@ -8,14 +8,16 @@ import java.util.Properties;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
+import org.apache.log4j.PropertyConfigurator;
+
 import swing.sys.common.ContentParams;
 import swing.sys.common.util.CloseUtil;
 
 /**
- * 资源初始化监听器
+ * log4j初始化监听器
  * @author wang_xf
  */
-public class ResourceListener extends ContentParams implements ServletContextListener {
+public class Log4jInitListener implements ServletContextListener {
 
 	@Override
 	public void contextDestroyed(ServletContextEvent event) {
@@ -24,13 +26,14 @@ public class ResourceListener extends ContentParams implements ServletContextLis
 
 	@Override
 	public void contextInitialized(ServletContextEvent event) {
-		String resourcePath = event.getServletContext().getInitParameter("resourcePath");
+		String resourcePath = event.getServletContext().getInitParameter("log4jConfigLocation");
 		
 		InputStreamReader is = null;
 		try {
 			is = new InputStreamReader(event.getServletContext().getClassLoader().getResourceAsStream(resourcePath), "UTF-8");
-			properties = new Properties();
+			Properties properties = new Properties();
 			properties.load(is);
+			PropertyConfigurator.configure(properties);
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {

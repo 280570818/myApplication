@@ -63,6 +63,6 @@ public class BaseUtil {
 				e.printStackTrace();
 			}
 		}
-		return false;
+		return true;
 	}
 }
