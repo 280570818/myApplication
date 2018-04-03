@@ -7,6 +7,6 @@
 <title>主页</title>
 </head>
 <body>
-	写在这里 哦哦 你要画个不
+	<a href="${pageContext.request.contextPath}/escape.html">退出</a>
 </body>
 </html>

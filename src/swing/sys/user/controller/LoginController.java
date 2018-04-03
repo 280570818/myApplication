@@ -29,21 +29,25 @@ public class LoginController {
 	@Autowired
 	private UserService userService;
 	
+	/**
+	 * 登录操作
+	 */
 	@RequestMapping("/login")
 	public String login (HttpServletRequest request, User user 
 			) throws ServletException, IOException{
-		
 		User u = userService.login(user);
 		if(u != null){
-			request.getSession().setAttribute(SessionManager.SESSION_USER, u);
 			SessionManager.setUser(request.getSession(), u);
-			return BaseUtil.userInfoIsOK(u)?"home":"infoRegist";
+			return BaseUtil.userInfoIsOK(u)?"redirect:/home.html":"infoRegist";
 		}else{
 			request.setAttribute(LoginController.LOGIN_FLAG, "对不起！账户/密码错误！");
 			return "login";
 		}
 	}
 	
+	/**
+	 * 注册帐号
+	 */
 	@RequestMapping("/regist")
 	public String regist (HttpServletRequest request, User user){
 		System.out.println(user);
@@ -52,6 +56,9 @@ public class LoginController {
 		return "login";
 	}
 	
+	/**
+	 * 忘记密码
+	 */
 	@RequestMapping("/forget")
 	@ResponseBody
 	public ReturnObj forget (HttpServletRequest request, String email){
@@ -63,6 +70,9 @@ public class LoginController {
 		}
 	}
 	
+	/**
+	 * 详细信息完善操作
+	 */
 	@RequestMapping("/infoRegist")
 	public String infoRegist (HttpServletRequest request, User user){
 		System.out.println(user);
@@ -71,17 +81,27 @@ public class LoginController {
 		return "home";
 	}
 	
+	/**
+	 * 用户名是否存在
+	 */
 	@RequestMapping("/usernameisexists")
 	@ResponseBody
 	public String usernameisexists (@RequestParam String userName){
 		return userService.userNameIsExists(userName);
 	}
 	
+	/**
+	 * 登录页面
+	 */
 	@RequestMapping("/loginUI")
 	public String loginUI(HttpServletRequest request){
+		
 		return "login";
 	}
 	
+	/**
+	 * 注册页面
+	 */
 	@RequestMapping("/registUI")
 	public String registUI(HttpServletRequest request){
 		

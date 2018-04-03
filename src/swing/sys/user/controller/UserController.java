@@ -1,29 +1,39 @@
 package swing.sys.user.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import swing.sys.user.model.User;
+import swing.sys.SessionManager;
 import swing.sys.user.service.UserService;
 
 
 @Controller
 @Scope(value="prototype")
-@RequestMapping("/user")
 public class UserController {
+	
 	@Autowired
 	private UserService userService;
 	
-	@RequestMapping(value="/save.html")
-	public String save (User user){
-		userService.save(user);
-		return "success";
+	/**
+	 * homePage主页
+	 */
+	@RequestMapping(value="home")
+	public String index (){
+		
+		return "home";
 	}
 	
-	@RequestMapping(value="/registUI.html")
-	public String registUI (){
-		return "regist";
+	/**
+	 * 退出登录
+	 */
+	@RequestMapping("/escape")
+	public String escape (HttpServletRequest request){
+		SessionManager.invalidate(request.getSession());
+		request.setAttribute(LoginController.LOGIN_FLAG, "您已成功退出！");
+		return "redirect:/login/loginUI.html";
 	}
 }
