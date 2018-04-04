@@ -1,5 +1,7 @@
 package swing.sys.user.controller;
 
+import java.util.Enumeration;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class UserController {
 	 * homePage主页
 	 */
 	@RequestMapping(value="home")
-	public String index (){
+	public String index (HttpServletRequest request){
 		
 		return "home";
 	}
