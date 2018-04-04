@@ -38,7 +38,11 @@ public class LoginFilter implements Filter {
 			//请求路径为/而且没有登陆的，就去登陆页面
 			request.getRequestDispatcher("/login/loginUI.html").forward(req, response);
 		}else{
-			chain.doFilter(request, response);
+			if(req.getRequestURI().equals("/")){
+				request.getRequestDispatcher("/home/index.html").forward(req, response);
+			}else{
+				chain.doFilter(request, response);
+			}
 		}
 	}
 

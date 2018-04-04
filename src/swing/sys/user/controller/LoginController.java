@@ -37,8 +37,13 @@ public class LoginController {
 			) throws ServletException, IOException{
 		User u = userService.login(user);
 		if(u != null){
-			SessionManager.setUser(request.getSession(), u);
-			return BaseUtil.userInfoIsOK(u)?"redirect:/home.html":"infoRegist";
+			//登录成功后检查用户信息是否完善
+			if(BaseUtil.userInfoIsOK(u)){
+				SessionManager.setUser(request.getSession(), u);
+				return "redirect:/home/index.html";
+			}else{
+				return "infoRegist";
+			}
 		}else{
 			request.setAttribute(LoginController.LOGIN_FLAG, "对不起！账户/密码错误！");
 			return "login";
@@ -75,10 +80,14 @@ public class LoginController {
 	 */
 	@RequestMapping("/infoRegist")
 	public String infoRegist (HttpServletRequest request, User user){
-		System.out.println(user);
+		String userName = user.getUserName();
+		user.setUserName(null);
 		userService.updateUserById(user);
+		user.setUserName(userName);
 		
-		return "home";
+		SessionManager.setUser(request.getSession(), user);
+		
+		return "redirect:/home/index.html";
 	}
 	
 	/**

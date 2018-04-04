@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class User implements Serializable {
 	private Long id;
 	private Long cid;
+	private Integer roleId;
 	private String userName;
 	private String password;
 	private String email;
@@ -22,6 +23,12 @@ public class User implements Serializable {
 	private String qqAccount;
 	private String weiChatAccount;
 	
+	public Integer getRoleId() {
+		return roleId;
+	}
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
 	public Long getId() {
 		return id;
 	}

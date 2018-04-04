@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MapperCoder {
-	String className = "swing.sys.menu.model.Menu";
+	String className = "swing.sys.role.model.Role";
 	String[] columns = null;
 	String[] fields = null;
 	String[] types = null;
-	String tableName = "SYS_MENU";
+	String tableName = "SYS_ROLE";
 	
 	@Test
 	public void getResultMap() {

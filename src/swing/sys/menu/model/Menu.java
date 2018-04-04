@@ -17,7 +17,15 @@ public class Menu {
 	private String url;
 	/**菜单描述*/
 	private String description;
+	/**菜单图标*/
+	private String icon;
 	
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 	public Integer getId() {
 		return id;
 	}

@@ -21,6 +21,13 @@ public class UserService {
 		userMapper.save(s);
 	}
 
+	/**
+	 * 执行登录操作
+	 * 根据用户名在数据库查询是否存在该用户
+	 * 如果存在，就判断密码是否一致
+	 * 如果用户不存在，或，密码不一致，返回null
+	 * 全部一致就返回该用户用于在session中保存
+	 */
 	public User login(User user) {
 		User u = userMapper.getUserByUserName(user.getUserName());
 		if(u == null || !u.getPassword().equals(user.getPassword())){
