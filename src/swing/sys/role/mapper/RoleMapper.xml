@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="swing.sys.role.mapper.RoleMapper">
+	<resultMap type="swing.sys.role.model.Role" id="role">
+		<id property="id" column="ID"/>
+		<result property="name" column="NAME"/>
+		<result property="menuId" column="MENU_ID"/>
+	</resultMap>
+	
+	<select id="queryAllRole" resultMap="role">
+		SELECT * FROM SYS_ROLE
+	</select>
+
+	<select id="QueryRoleById" parameterType="int" resultMap="role">
+		SELECT * FROM SYS_ROLE WHERE ID=#{u}
+	</select>
+
+	<update id="updateRoleById" parameterType="swing.sys.role.model.Role">
+		UPDATE SYS_ROLE
+		<set>
+			<if test="name != null">NAME=#{name},</if>
+			<if test="menuId != null">MENU_ID=#{menuId},</if>
+		</set>
+		WHERE ID=#{id}
+	</update>
+	
+	<delete id="deleteRoleById" parameterType="int">
+		DELETE FROM SYS_ROLE WHERE ID=#{id}
+	</delete>
+	
+	<insert id="insertRole" parameterType="swing.sys.role.model.Role" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO SYS_ROLE 
+			(NAME,MENU_ID) 
+		VALUES 
+			(#{name},#{menuId})
+	</insert>
+</mapper>

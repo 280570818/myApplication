@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="swing.sys.menu.mapper.MenuMapper">
+	<resultMap type="swing.sys.menu.model.Menu" id="menu">
+		<id property="id" column="ID"/>
+		<result property="parentId" column="PARENT_ID"/>
+		<result property="path" column="PATH"/>
+		<result property="name" column="NAME"/>
+		<result property="type" column="TYPE"/>
+		<result property="url" column="URL"/>
+		<result property="description" column="DESCRIPTION"/>
+		<result property="icon" column="ICON"/>
+	</resultMap>
+	
+	<select id="queryAllMenu" resultMap="menu">
+		SELECT * FROM SYS_MENU
+	</select>
+
+	<select id="QueryMenuById" parameterType="int" resultMap="menu">
+		SELECT * FROM SYS_MENU WHERE ID=#{u}
+	</select>
+
+	<update id="updateMenuById" parameterType="swing.sys.menu.model.Menu">
+		UPDATE SYS_MENU
+		<set>
+			<if test="parentId != null">PARENT_ID=#{parentId},</if>
+			<if test="path != null">PATH=#{path},</if>
+			<if test="name != null">NAME=#{name},</if>
+			<if test="type != null">TYPE=#{type},</if>
+			<if test="url != null">URL=#{url},</if>
+			<if test="description != null">DESCRIPTION=#{description},</if>
+			<if test="icon != null">ICON=#{icon},</if>
+		</set>
+		WHERE ID=#{id}
+	</update>
+	
+	<delete id="deleteMenuByIds">
+		DELETE FROM SYS_MENU WHERE ID in 
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+		#{id}
+		</foreach>
+	</delete>
+	
+	<delete id="deleteMenuById" parameterType="int">
+		DELETE FROM SYS_MENU WHERE ID=#{id}
+	</delete>
+	
+	<insert id="insertMenu" parameterType="swing.sys.menu.model.Menu" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO SYS_MENU 
+			(PARENT_ID,PATH,NAME,TYPE,URL,DESCRIPTION,ICON) 
+		VALUES 
+			(#{parentId},#{path},#{name},#{type},#{url},#{description},#{icon})
+	</insert>
+</mapper>

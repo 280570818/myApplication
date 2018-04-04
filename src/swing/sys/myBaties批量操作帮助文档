@@ -1,0 +1,42 @@
+myBaties批量操作的时候可以这样
+1.修改
+	<update id="updateBatch" parameterType="java.util.List">
+        update user
+        <set>
+            <trim prefix="age = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                     when id=#{item.id} then #{item.age}
+                </foreach>
+            </trim>
+            <trim prefix="sex = case" suffix="end,">
+                <foreach collection="list" item="item" index="index">
+                     when id=#{item.id} then #{item.sex}
+                </foreach>
+            </trim>
+        </set>
+        where id in
+        <foreach collection="list" index="index" item="item" separator="," open="(" close=")">
+            #{item.id,jdbcType=BIGINT}
+        </foreach>
+    </update>
+    
+2.插入
+	<insert id="insertbatch" parameterType="Java.util.List">  
+        insert into user ( name,sex,age ) values  
+	    <foreach collection="list" item="u" separator=",">  
+	        ( #{u.name}, #{u.sex}, #{u.age} )  
+	    </foreach>  
+	</insert> 
+
+MyBaties传入多个参数
+
+	public Integer update(@Param("id") Integer id, @Param("name") String name, @Param("sex") String sex);
+	
+	<update id="update">
+		update user
+		<set>
+			name=#{name},
+			sex=#{sex}
+		</set>
+		where id=#{id}
+	</update>
