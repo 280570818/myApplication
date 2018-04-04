@@ -6,11 +6,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MapperCoder {
-	String className = "swing.ywl.info.model.Info";
+	String className = "swing.sys.menu.model.Menu";
 	String[] columns = null;
 	String[] fields = null;
 	String[] types = null;
-	String tableName = null;
+	String tableName = "SYS_MENU";
 	
 	@Test
 	public void getResultMap() {
@@ -88,7 +88,5 @@ public class MapperCoder {
 		columns = columnArr;
 		fields = fieldArr;
 		types = typeArr;
-		tableName = clas.getName();
-		tableName = tableName.substring(tableName.lastIndexOf(".")+1, tableName.length()).toUpperCase();
 	}
 }
