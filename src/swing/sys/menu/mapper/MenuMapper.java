@@ -17,6 +17,8 @@ public interface MenuMapper {
 	Menu QueryMenuById(Integer id);
 	
 	List<Menu> queryAllMenu();
+
+	List<Menu> QueryMenuByIds(Integer[] ids);
 	
 	
 }

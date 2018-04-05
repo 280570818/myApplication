@@ -14,6 +14,13 @@
 		<result property="icon" column="ICON"/>
 	</resultMap>
 	
+	<select id="QueryMenuByIds" resultMap="menu">
+		SELECT * FROM SYS_MENU where id in 
+		<foreach collection="array" item="id" open="(" close=")" separator=",">
+			#{id}
+		</foreach>
+	</select>
+	
 	<select id="queryAllMenu" resultMap="menu">
 		SELECT * FROM SYS_MENU
 	</select>

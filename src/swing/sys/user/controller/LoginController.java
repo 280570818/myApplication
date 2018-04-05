@@ -42,6 +42,7 @@ public class LoginController {
 				SessionManager.setUser(request.getSession(), u);
 				return "redirect:/home/index.html";
 			}else{
+				request.setAttribute("user", u);
 				return "infoRegist";
 			}
 		}else{

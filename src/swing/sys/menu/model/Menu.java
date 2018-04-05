@@ -1,5 +1,8 @@
 package swing.sys.menu.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * 菜单
  * @author wang_xf
@@ -19,7 +22,16 @@ public class Menu {
 	private String description;
 	/**菜单图标*/
 	private String icon;
+	private List<Menu> children;
 	
+	public List<Menu> getChildren() {
+		if(children == null)
+			children = new ArrayList<Menu>();
+		return children;
+	}
+	public void setChildren(List<Menu> children) {
+		this.children = children;
+	}
 	public String getIcon() {
 		return icon;
 	}

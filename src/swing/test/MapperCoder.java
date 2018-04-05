@@ -6,11 +6,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MapperCoder {
-	String className = "swing.sys.role.model.Role";
+	String className = "swing.sys.user.model.User";
 	String[] columns = null;
 	String[] fields = null;
 	String[] types = null;
 	String tableName = "SYS_ROLE";
+	
+	@Test
+	public void getAllColumn() {
+		for (int i = 0; i < columns.length; i++) {
+			System.out.print(columns[i]+",");
+		}
+	}
 	
 	@Test
 	public void getResultMap() {

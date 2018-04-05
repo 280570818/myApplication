@@ -3,9 +3,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="swing.sys.user.mapper.UserMapper">
+	<sql id="insertColumn">
+		CID,ROLE_ID,USER_NAME,PASSWORD,EMAIL,SEX,NAME,ID_CARD_NO,PHONE_NO,
+		SCHOOL_NAME,CLASS_NAME,BIRTHDAY,QQ_ACCOUNT,WEI_CHAT_ACCOUNT
+	</sql>
+	<sql id="allColumn">
+		ID,<include refid="insertColumn"/>
+	</sql>
 	<resultMap type="swing.sys.user.model.User" id="user">
-		<result property="id" column="ID"/>
+		<id property="id" column="ID"/>
 		<result property="cid" column="CID"/>
+		<result property="roleId" column="ROLE_ID"/>
 		<result property="userName" column="USER_NAME"/>
 		<result property="password" column="PASSWORD"/>
 		<result property="email" column="EMAIL"/>
@@ -18,6 +26,7 @@
 		<result property="birthday" column="BIRTHDAY"/>
 		<result property="qqAccount" column="QQ_ACCOUNT"/>
 		<result property="weiChatAccount" column="WEI_CHAT_ACCOUNT"/>
+		<result property="weiChatAccount" column="WEI_CHAT_ACCOUNT"/>
 	</resultMap>
 
 	<select id="userNameIsExists" parameterType="string" resultType="int">
@@ -25,17 +34,18 @@
 	</select>
 
 	<select id="getUserByUserName" parameterType="string" resultMap="user">
-		SELECT * FROM USER WHERE USER_NAME=#{userName}		
+		SELECT <include refid="allColumn"/> FROM USER WHERE USER_NAME=#{userName}		
 	</select>
 	
 	<select id="getUserByEmail" parameterType="string" resultMap="user">
-		SELECT * FROM USER WHERE EMAIL=#{userName}
+		SELECT <include refid="allColumn"/> FROM USER WHERE EMAIL=#{userName}
 	</select>
 
 	<update id="updateUserById" parameterType="swing.sys.user.model.User">
 		UPDATE USER
 		<set>
 			<if test="cid != null">CID=#{cid},</if>
+			<if test="roleId != null">ROLE_ID=#{roleId},</if>
 			<if test="userName != null">USER_NAME=#{userName},</if>
 			<if test="password != null">PASSWORD=#{password},</if>
 			<if test="email != null">EMAIL=#{email},</if>
@@ -55,10 +65,9 @@
 	<insert id="save" parameterType="swing.sys.user.model.User"
 		useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO USER 
-			(CID,USER_NAME,PASSWORD,EMAIL,SEX,NAME,ID_CARD_NO,PHONE_NO,
-			SCHOOL_NAME,CLASS_NAME,BIRTHDAY,QQ_ACCOUNT,WEI_CHAT_ACCOUNT) 
+			(<include refid="insertColumn"/>)
 		VALUES 
-			(#{cid},#{userName},#{password},#{email},#{sex},#{name},#{idCardNo},#{phoneNo},
+			(#{cid},#{roleId},#{userName},#{password},#{email},#{sex},#{name},#{idCardNo},#{phoneNo},
 			#{schoolName},#{className},#{birthday},#{qqAccount},#{weiChatAccount})
 	</insert>
 </mapper>

@@ -1,11 +1,5 @@
-<%@page import="swing.sys.SessionManager"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/common/taglibs.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%
-	request.setAttribute("user", session.getAttribute(SessionManager.SESSION_USER));
-%>
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,11 +19,11 @@
   		<div class="container">
       		<form class="form-login" action="${pageContext.request.contextPath}/login/infoRegist.html" 
       			method="post" onsubmit="return registCheck();" id="infoRegistForm" style="max-width: 800px;">
-		        <h2 class="form-login-heading">您好！${user.userName}，请首先完善帐号信息</h2>
+		        <h2 class="form-login-heading">您好！${requestScope.user.userName}，请首先完善帐号信息</h2>
 		        <div class="login-wrap">
 		        	<input type="hidden" name="id" value="${user.id}">
 		        	<div class="col-md-6 contentInput">
-		            	<input type="text" class="form-control" name="name" value="${user.name}" placeHolder="真实姓名">
+		            	<input type="text" class="form-control" name="name" value="${requestScope.user.name}" placeHolder="真实姓名">
 		            </div>
 		            <div class="col-md-6 contentInput">
 		            	<input type="text" class="form-control" name="phoneNo" value="${user.phoneNo}" placeHolder="手机号" onchange="checkPhone();">
@@ -41,7 +35,7 @@
 		            	<input type="text" class="form-control" name="qqAccount" value="${user.qqAccount}" placeHolder="QQ号码" onchange="qqAccountChange();">
 		            </div>
 		            <div class="col-md-6 contentInput">
-		            	<input type="text" class="form-control" name="birthday" value='<fmt:formatDate value="${user.birthday}"/>' placeHolder="生日">
+		            	<input type="text" class="form-control" name="birthday" value="${user.birthday}" placeHolder="生日">
 		            </div>
 		            <div class="col-md-6 contentInput">
 		            	<input type="text" class="form-control" name="weiChatAccount" value="${user.weiChatAccount}" placeHolder="微信号码">
